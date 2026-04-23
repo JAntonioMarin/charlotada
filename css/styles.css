@@ -108,22 +108,6 @@ body {
   50%       { opacity: 0.35; transform: scale(0.7); }
 }
 
-/* ── PORTADA ──────────────────────────────────────────────────────────────── */
-.portada {
-  width: 100%;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: center;
-  background: var(--surface);
-}
-
-.portada img {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  display: block;
-}
-
 /* ── STATS STRIP ──────────────────────────────────────────────────────────── */
 .stats {
   background: var(--surface);
