@@ -1,3 +1,15 @@
+export function initCollapsibles() {
+  document.querySelectorAll('.collapsible-trigger').forEach(btn => {
+    const body = btn.nextElementSibling;
+    btn.addEventListener('click', () => {
+      const opening = !body.classList.contains('is-open');
+      body.classList.toggle('is-open', opening);
+      btn.classList.toggle('is-open', opening);
+      btn.setAttribute('aria-expanded', opening);
+    });
+  });
+}
+
 export function initAnimations() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

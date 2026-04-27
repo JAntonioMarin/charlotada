@@ -1,4 +1,4 @@
-import { POINTS } from './config.js';
+import { POINTS, PILOTS } from './config.js';
 
 export function calcPoints(result, guesses) {
   return guesses.reduce((sum, g, i) => sum + (g === result[i] ? POINTS[i] : 0), 0);
@@ -24,6 +24,21 @@ export function countPerfects(events) {
     });
   });
   return counts;
+}
+
+export function validatePicks(events) {
+  const errors = [];
+  events.forEach(ev => {
+    const valid = PILOTS[ev.type];
+    ev.picks.forEach(({ player, guesses }) => {
+      guesses.forEach((g, i) => {
+        if (g !== '-' && !valid.has(g)) {
+          errors.push({ event: ev.name, player, position: i + 1, name: g });
+        }
+      });
+    });
+  });
+  return errors;
 }
 
 export function buildStandings(events) {

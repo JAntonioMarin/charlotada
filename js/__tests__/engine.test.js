@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcPoints, countPerfects, buildStandings } from '../engine.js';
+import { calcPoints, countPerfects, buildStandings, validatePicks } from '../engine.js';
 
 // Resultado de referencia para la mayoría de tests
 const R = ['A', 'B', 'C', 'D', 'E'];
@@ -295,5 +295,90 @@ describe('buildStandings', () => {
     }];
     const s = buildStandings(events);
     s.forEach(d => expect(d.prev).toBe(d.pos));
+  });
+});
+
+// ── validatePicks ───────────────────────────────────────────────────────────
+
+describe('validatePicks', () => {
+  it('sin errores cuando todos los nombres son válidos', () => {
+    const events = [{
+      type: 'rally',
+      name: 'Rally Test',
+      result: ['Ogier', 'Evans', 'Katsuta', 'Pajari', 'Fourmaux'],
+      picks: [
+        { player: 'Ana',  guesses: ['Ogier', 'Evans', 'Katsuta', '-', '-'] },
+        { player: 'Luis', guesses: ['-', '-', '-', '-', '-'] },
+      ],
+    }];
+    expect(validatePicks(events)).toEqual([]);
+  });
+
+  it('detecta un nombre con typo', () => {
+    const events = [{
+      type: 'f1',
+      name: 'GP Test',
+      result: ['Russell', 'Antonelli', 'Leclerc', 'Hamilton', 'Norris'],
+      picks: [
+        { player: 'Cebolla', guesses: ['Russell', 'Antonelli', 'Leclerc', 'Hamiltron', 'Norris'] },
+      ],
+    }];
+    const errors = validatePicks(events);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatchObject({ event: 'GP Test', player: 'Cebolla', position: 4, name: 'Hamiltron' });
+  });
+
+  it('detecta nombre en minúscula', () => {
+    const events = [{
+      type: 'rally',
+      name: 'Rally Test',
+      result: ['Katsuta', 'Evans', 'Pajari', 'Solberg', 'Fourmaux'],
+      picks: [
+        { player: 'Cebolla', guesses: ['Solberg', 'Evans', 'katsuta', 'Neuville', 'Fourmaux'] },
+      ],
+    }];
+    const errors = validatePicks(events);
+    expect(errors).toHaveLength(1);
+    expect(errors[0].name).toBe('katsuta');
+  });
+
+  it('los guiones se ignoran (no participó)', () => {
+    const events = [{
+      type: 'moto',
+      name: 'MotoGP Test',
+      result: ['M Marquez', 'Bezzecchi', 'Martin', 'Acosta', 'Ogura'],
+      picks: [
+        { player: 'Pilili', guesses: ['-', '-', '-', '-', '-'] },
+      ],
+    }];
+    expect(validatePicks(events)).toEqual([]);
+  });
+
+  it('detecta múltiples errores en distintos eventos y jugadores', () => {
+    const events = [
+      {
+        type: 'f1',
+        name: 'GP A',
+        result: ['Russell', 'Antonelli', 'Leclerc', 'Hamilton', 'Norris'],
+        picks: [
+          { player: 'Ana',  guesses: ['Russel', 'Antonelli', 'Leclerc', 'Hamilton', 'Norris'] },
+        ],
+      },
+      {
+        type: 'rally',
+        name: 'Rally B',
+        result: ['Ogier', 'Evans', 'Katsuta', 'Pajari', 'Fourmaux'],
+        picks: [
+          { player: 'Luis', guesses: ['Ogier', 'Evans', 'katsuta', 'Pajari', 'Fourmaux'] },
+        ],
+      },
+    ];
+    const errors = validatePicks(events);
+    expect(errors).toHaveLength(2);
+    expect(errors.map(e => e.name)).toEqual(['Russel', 'katsuta']);
+  });
+
+  it('lista de eventos vacía → sin errores', () => {
+    expect(validatePicks([])).toEqual([]);
   });
 });

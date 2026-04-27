@@ -45,6 +45,57 @@ function buildPickRow(player, guesses, result) {
   </tr>`;
 }
 
+const CHEVRON = `<svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>`;
+
+export function renderByType(standingsByType) {
+  const TYPES = [
+    { key: 'f1',    label: 'Fórmula 1' },
+    { key: 'moto',  label: 'MotoGP' },
+    { key: 'rally', label: 'Rally WRC' },
+  ];
+
+  const tables = TYPES.map(({ key, label }) => {
+    const s = standingsByType[key];
+    if (!s.length) return '';
+    const maxPts = s[0].pts || 1;
+
+    const rows = s.map(d => {
+      const barWidth = Math.round((d.pts / maxPts) * 72);
+      return `<tr class="${d.pos === 1 ? 'leader' : ''}">
+        <td><span class="${posClass(d.pos)}">${d.pos}</span></td>
+        <td>${changeIndicator(d.pos, d.prev)}</td>
+        <td><span class="dname">${d.name}</span></td>
+        <td>
+          <div class="pts-cell">
+            <span class="pts${d.pos === 1 ? ' gold' : ''}">${d.pts}</span>
+            <div class="pts-bar pts-bar--${key}" style="width:${barWidth}px"></div>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    return `<div class="type-block">
+      <div class="type-block-hdr type-block-hdr--${key}">${label}</div>
+      <div class="tbl-wrap type-block-tbl"><div class="tbl-scroll">
+        <table>
+          <thead><tr><th>POS</th><th>CHG</th><th>JUGADOR</th><th>PTS</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div></div>
+    </div>`;
+  }).join('');
+
+  return `<div class="collapsible">
+    <button class="collapsible-trigger" aria-expanded="false">
+      <span>Clasificación por Disciplina</span>
+      ${CHEVRON}
+    </button>
+    <div class="collapsible-body">
+      <div class="type-grid">${tables}</div>
+    </div>
+  </div>`;
+}
+
 export function renderPerfectScores(standings) {
   const rows = standings
     .filter(d => d.perfects > 0)
