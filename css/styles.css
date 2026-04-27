@@ -379,6 +379,32 @@ td:last-child  { padding-right: 1.5rem; text-align: right; }
 .pick-ok   { background: rgba(45, 212, 160, 0.12); color: #2dd4a0; }
 .pick-fail { color: var(--text3); }
 
+/* ── ANIMATIONS ───────────────────────────────────────────────────────────── */
+@keyframes rowEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+tbody tr.row-enter {
+  animation: rowEnter 0.35s ease-out both;
+}
+
+.anim-ready {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+}
+
+.anim-ready.anim-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-ready          { opacity: 1; transform: none; transition: none; }
+  tbody tr.row-enter   { animation: none; }
+}
+
 /* ── FOOTER ───────────────────────────────────────────────────────────────── */
 .ftr {
   text-align: center;

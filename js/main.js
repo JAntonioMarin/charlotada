@@ -2,6 +2,7 @@ import { TOTAL_ROUNDS }              from './config.js';
 import { events }                    from './data.js';
 import { buildStandings }            from './engine.js';
 import { renderGeneral, renderPerfectScores, renderEvent } from './render.js';
+import { initAnimations }            from './animations.js';
 
 const standings = buildStandings(events);
 
@@ -19,3 +20,5 @@ document.getElementById('app').innerHTML =
       ${events.map(renderEvent).join('')}
     </div>
   </section>`;
+
+initAnimations();
