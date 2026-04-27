@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcPoints, countPerfects, buildStandings } from './engine.js';
+import { calcPoints, countPerfects, buildStandings } from '../engine.js';
 
 // Resultado de referencia para la mayoría de tests
 const R = ['A', 'B', 'C', 'D', 'E'];
