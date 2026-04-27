@@ -34,7 +34,7 @@ export const events = [
     round: 11,
     name: 'MotoGP España',
     location: 'Circuito de Jerez',
-    date: '27 abr 2026',
+    date: '26 abr 2026',
     result: ['A Marquez', 'Bezzecchi', 'Giannantonio', 'Martin', 'Ogura'],
     picks: [
       { player: 'Choro',    guesses: ['M Marquez',  'A Marquez',  'Bezzecchi',   'Giannantonio',       'Martin'   ] },
