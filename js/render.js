@@ -45,6 +45,30 @@ function buildPickRow(player, guesses, result) {
   </tr>`;
 }
 
+export function renderPerfectScores(standings) {
+  const rows = standings
+    .filter(d => d.perfects > 0)
+    .sort((a, b) => b.perfects - a.perfects);
+
+  if (rows.length === 0) return '';
+
+  const tableRows = rows.map((d, i) => `<tr>
+    <td><span class="${posClass(i + 1)}">${i + 1}</span></td>
+    <td><span class="dname">${d.name}</span></td>
+    <td><span class="pts gold">${d.perfects}</span></td>
+  </tr>`).join('');
+
+  return `<section>
+    <div class="sec-title"><h2>⭐ Tabla de Plenos</h2><div class="sec-line"></div></div>
+    <div class="tbl-wrap"><div class="tbl-scroll">
+      <table>
+        <thead><tr><th>POS</th><th>JUGADOR</th><th>PLENOS</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div></div>
+  </section>`;
+}
+
 export function renderGeneral(standings) {
   const maxPts = standings[0]?.pts || 1;
 
