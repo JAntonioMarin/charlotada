@@ -13,7 +13,7 @@ export const upcomingEvents = [
     round: 13,
     name: 'GP de Miami',
     location: 'Miami International Autodrome',
-    date: '3 may 2026',
+    date: '3 may 2026, 19:00',
     deadline: 'dom 3 may, 18:00',
   },
 ];
