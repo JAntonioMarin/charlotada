@@ -47,6 +47,39 @@ function buildPickRow(player, guesses, result) {
 
 const CHEVRON = `<svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>`;
 
+export function renderUpcoming(upcoming) {
+  if (upcoming.length === 0) {
+    return `<section>
+      <div class="sec-title"><h2>📅 Próximos Eventos</h2><div class="sec-line"></div></div>
+      <div class="upcoming-empty">No hay eventos programados para esta semana</div>
+    </section>`;
+  }
+
+  const cards = upcoming.map(ev => {
+    const lbl = LABELS[ev.type];
+    return `<div class="upcoming-card upcoming-${ev.type}">
+      <div class="ev-head">
+        <div class="ev-icon bg-${ev.type}">${SVG[ev.type]}</div>
+        <div class="ev-info">
+          <div class="ev-type-lbl">${lbl} · Ronda ${ev.round}</div>
+          <div class="ev-name">${ev.name}</div>
+          <div class="ev-detail">📍 ${ev.location} &nbsp;·&nbsp; 📅 ${ev.date}</div>
+        </div>
+        <span class="ev-pill pill-${ev.type}">${lbl}</span>
+      </div>
+      <div class="upcoming-deadline">
+        <span class="deadline-label">Enviar pronóstico antes del</span>
+        <span class="deadline-time">⏰ ${ev.deadline}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<section>
+    <div class="sec-title"><h2>📅 Próximos Eventos</h2><div class="sec-line"></div></div>
+    <div class="upcoming-grid">${cards}</div>
+  </section>`;
+}
+
 export function renderByType(standingsByType) {
   const TYPES = [
     { key: 'f1',    label: 'Fórmula 1' },

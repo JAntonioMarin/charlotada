@@ -1,7 +1,7 @@
 import { TOTAL_ROUNDS }              from './config.js';
-import { events }                    from './data.js';
+import { events, upcomingEvents }    from './data.js';
 import { buildStandings }            from './engine.js';
-import { renderGeneral, renderPerfectScores, renderByType, renderEvent } from './render.js';
+import { renderGeneral, renderPerfectScores, renderByType, renderEvent, renderUpcoming } from './render.js';
 import { initAnimations, initCollapsibles } from './animations.js';
 
 const standings = buildStandings(events);
@@ -18,6 +18,7 @@ document.getElementById('stat-players').textContent   = standings.length;
 document.getElementById('stat-maxpts').textContent    = standings[0]?.pts ?? 0;
 
 document.getElementById('app').innerHTML =
+  renderUpcoming(upcomingEvents) +
   renderGeneral(standings) +
   renderPerfectScores(standings) +
   renderByType(standingsByType) +

@@ -6,6 +6,18 @@ import { EVENT_TYPES } from './config.js';
  * result: top-5 pilotos reales en orden de llegada
  * picks:  pronóstico de cada jugador para las posiciones 1º–5º
  */
+
+export const upcomingEvents = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 13,
+    name: 'GP de Miami',
+    location: 'Miami International Autodrome',
+    date: '3 may 2026',
+    deadline: 'dom 3 may, 18:00',
+  },
+];
+
 export const events = [
   {
     type: EVENT_TYPES.RALLY,
