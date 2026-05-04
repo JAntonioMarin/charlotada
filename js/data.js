@@ -9,16 +9,46 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.F1,
-    round: 13,
-    name: 'GP de Miami',
-    location: 'Miami International Autodrome',
-    date: '3 may 2026, 19:00',
-    deadline: 'dom 3 may, 18:00',
+    type: EVENT_TYPES.RALLY,
+    round: 14,
+    name: 'Rally Portugal',
+    location: 'Portugal',
+    date: '7-10 may 2026, 16:01',
+    deadline: 'jue 8 may, 15:00',
+  },
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 15,
+    name: 'MotoGP Francia',
+    location: 'Autódromo de Bugatti',
+    date: '10 may 2026, 14:00',
+    deadline: 'dom 10 may, 13:00',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 13,
+    name: 'GP de Miami',
+    location: 'Miami International Autodrome',
+    date: '3 may 2026',
+    result: ['Antonelli', 'Norris', 'Piastri', 'Russell', 'Verstappen'],
+    picks: [
+      { player: 'Choro',    guesses: ['Antonelli',  'Leclerc',  'Verstappen',   'Russell', 'Hamilton'   ] },
+      { player: 'Dani',     guesses: ['Norris',  'Antonelli',  'Piastri',   'Russell', 'Verstappen'    ] },
+      { player: 'Juanra',   guesses: ['Antonelli',  'Leclerc',   'Norris',  'Russell',       'Verstappen'   ] },
+      { player: 'Juano',    guesses: ['Antonelli',   'Verstappen',  'Leclerc',  'Norris',    'Russell'    ] },
+      { player: 'Sarri',    guesses: ['Antonelli',  'Norris',  'Russell',     'Leclerc',     'Verstappen'   ] },
+      { player: 'Lechero',  guesses: ['Norris',  'Piastri',  'Verstappen',   'Leclerc',    'Antonelli'    ] },
+      { player: 'Cebolla',  guesses: ['Antonelli',  'Verstappen',   'Leclerc',  'Norris',    'Russell'    ] },
+      { player: 'Amador',   guesses: ['Verstappen',  'Antonelli',  'Leclerc',   'Norris', 'Russell' ] },
+      { player: 'Pilili',   guesses: ['Leclerc',   'Antonelli',  'Verstappen',  'Russell',     'Norris'   ] },
+      { player: 'Calcetin', guesses: ['Antonelli',  'Verstappen',   'Norris',  'Leclerc',    'Russell'      ] },
+      { player: 'Angel',    guesses: ['Antonelli',  'Leclerc',  'Russell',  'Verstappen',     'Norris'      ] },
+      { player: 'David',    guesses: ['Verstappen',  'Leclerc',  'Antonelli',     'Norris',     'Russell'   ] },
+    ],
+  },
   {
     type: EVENT_TYPES.RALLY,
     round: 12,
@@ -60,7 +90,7 @@ export const events = [
       { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
       { player: 'Calcetin', guesses: ['A Marquez',  'M Marquez',   'Giannantonio',  'Acosta',    'Bezzecchi'      ] },
       { player: 'Angel',    guesses: ['A Marquez',  'M Marquez',  'Bezzecchi',  'Giannantonio',     'Fernandez'      ] },
-      { player: 'David',    guesses: ['M Marquez',  'A Marquez',  'Acosta',     'M Marquez',     'Bezzecchi'   ] },
+      { player: 'David',    guesses: ['M Marquez',  'A Marquez',  'Acosta',     'Bezzecchi',     'Bagnaia'   ] },
     ],
   },
   {
@@ -103,7 +133,7 @@ export const events = [
       { player: 'Amador',   guesses: ['Antonelli',  'Russell',  'Leclerc',   'Hamilton',       'Norris'   ] },
       { player: 'Pilili',   guesses: ['-',   '-',  '-',  '-',     '-'   ] },
       { player: 'Calcetin', guesses: ['Antonelli',  'Russell',   'Piastri',  'Norris',    'Leclerc'      ] },
-      { player: 'Angel',    guesses: ['Antonelli',  'Leclerc',  'Piastri',  'Norris',     'Leclerc'      ] },
+      { player: 'Angel',    guesses: ['Antonelli',  'Russell',  'Piastri',  'Norris',     'Leclerc'      ] },
       { player: 'David',    guesses: ['Russell',  'Antonelli',  'Leclerc',     'Piastri',     'Norris'   ] },
     ],
   },
@@ -155,7 +185,7 @@ export const events = [
     type: EVENT_TYPES.RALLY,
     round: 6,
     name: 'Rally Kenya',
-    location: 'kenya',
+    location: 'Kenya',
     date: '12–15 mar 2026',
     result: ['Katsuta', 'Fourmaux', 'Pajari', 'Lappi', 'Virves'],
     picks: [
