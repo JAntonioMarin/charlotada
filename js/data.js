@@ -9,16 +9,38 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.MOTO,
-    round: 16,
-    name: 'MotoGP Catalunya',
-    location: 'Circuit de Barcelona-Catalunya',
-    date: '17 may 2026, 14:00',
-    deadline: 'dom 17 may, 13:00',
+    type: EVENT_TYPES.F1,
+    round: 17,
+    name: 'GP de Canadá',
+    location: 'Circuito Gilles Villeneuve',
+    date: '24 may 2026, 22:00',
+    deadline: 'dom 24 may, 21:00',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 16,
+    name: 'MotoGP Catalunya',
+    location: 'Circuit de Barcelona-Catalunya',
+    date: '17 may 2026',
+    result: ['Giannantonio', 'Mir', 'Aldeguer', 'Ogura', 'Bagnaia'],
+    picks: [
+      { player: 'Choro',    guesses: ['A Marquez', 'Giannantonio', 'Martin',      'Bezzecchi',   'Acosta'     ] },
+      { player: 'Dani',     guesses: ['A Marquez', 'Acosta',       'Giannantonio','Fernandez',   'Zarco'      ] },
+      { player: 'Juanra',   guesses: ['Acosta',    'A Marquez',    'Fernandez',   'Giannantonio','Morbidelli' ] },
+      { player: 'Juano',    guesses: ['A Marquez', 'Acosta',       'Martin',      'Giannantonio','Bezzecchi'  ] },
+      { player: 'Sarri',    guesses: ['A Marquez', 'Martin',       'Giannantonio','Acosta',      'Bezzecchi'  ] },
+      { player: 'Lechero',  guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Cebolla',  guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Amador',   guesses: ['A Marquez', 'Acosta',       'Martin',      'Giannantonio','Bezzecchi'  ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['A Marquez', 'Acosta',       'Giannantonio','Fernandez',   'Bagnaia'    ] },
+      { player: 'Angel',    guesses: ['Martin',    'A Marquez',    'Acosta',      'Fernandez',   'Giannantonio'] },
+      { player: 'David',    guesses: ['A Marquez', 'Acosta',       'Giannantonio','Bagnaia',     'Zarco'      ] },
+    ],
+  },
   {
     type: EVENT_TYPES.MOTO,
     round: 15,
