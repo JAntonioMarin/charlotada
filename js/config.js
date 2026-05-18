@@ -2,11 +2,23 @@ export const POINTS = [5, 4, 3, 2, 1];
 
 export const TOTAL_ROUNDS = 58;
 
+export const PERFECT_SCORE = POINTS.reduce((sum, p) => sum + p, 0);
+
+export const LAST_UPDATE = '17 de Mayo de 2026';
+
 export const EVENT_TYPES = {
   RALLY: 'rally',
   F1:    'f1',
   MOTO:  'moto',
 };
+
+export const EVENT_LABELS = {
+  rally: 'Rally WRC',
+  f1:    'Fórmula 1',
+  moto:  'MotoGP',
+};
+
+export const EVENT_ORDER = ['f1', 'moto', 'rally'];
 
 export const PILOTS = {
   rally: new Set([

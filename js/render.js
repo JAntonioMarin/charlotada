@@ -1,15 +1,17 @@
 import { SVG } from './icons.js';
 import { calcPoints } from './engine.js';
-
-const LABELS = {
-  rally: 'Rally WRC',
-  f1:    'Fórmula 1',
-  moto:  'MotoGP',
-};
+import { POINTS, EVENT_LABELS, EVENT_ORDER } from './config.js';
 
 const ARROW_UP   = `<svg width="9" height="11" viewBox="0 0 9 11" fill="currentColor"><path d="M4.5 0L9 5.5H6.2V11H2.8V5.5H0Z"/></svg>`;
 const ARROW_DOWN = `<svg width="9" height="11" viewBox="0 0 9 11" fill="currentColor"><path d="M4.5 11L9 5.5H6.2V0H2.8V5.5H0Z"/></svg>`;
 const DASH       = `<svg width="12" height="3" viewBox="0 0 12 3" fill="currentColor"><rect width="12" height="3" rx="1.5"/></svg>`;
+
+const CHEVRON = `<svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>`;
+
+const POS_CLASS = { 1: 'pos p1', 2: 'pos p2', 3: 'pos p3' };
+const posClass  = p => POS_CLASS[p] || 'pos';
+
+const POSITION_HEADERS = POINTS.map((_, i) => `<th class="tc">${i + 1}º</th>`).join('');
 
 function changeIndicator(cur, prev) {
   const d = prev - cur;
@@ -18,97 +20,66 @@ function changeIndicator(cur, prev) {
   return `<span class="chg eq">${DASH}</span>`;
 }
 
-function posClass(p) {
-  if (p === 1) return 'pos p1';
-  if (p === 2) return 'pos p2';
-  if (p === 3) return 'pos p3';
-  return 'pos';
-}
-
-function buildResultStrip(result) {
-  return result
-    .map((pilot, i) => `<span class="res-item"><span class="res-pos">${i + 1}º</span>${pilot}</span>`)
-    .join('');
-}
-
-function buildPickRow(player, guesses, result) {
-  const pts = calcPoints(result, guesses);
-  const cells = guesses.map((g, i) => {
-    const ok = g === result[i];
-    return `<td class="tc"><span class="pick ${ok ? 'pick-ok' : 'pick-fail'}">${ok ? '✓ ' : ''}${g}</span></td>`;
-  }).join('');
-
-  return `<tr>
-    <td><span class="dname">${player}</span></td>
-    ${cells}
-    <td><span class="pts${pts > 0 ? ' gold' : ''}">${pts}</span></td>
-  </tr>`;
-}
-
-const CHEVRON = `<svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>`;
-
-export function renderUpcoming(upcoming) {
-  if (upcoming.length === 0) {
-    return `<section>
-      <div class="sec-title"><h2>📅 Próximos Eventos</h2><div class="sec-line"></div></div>
-      <div class="upcoming-empty">No hay eventos programados para esta semana</div>
-    </section>`;
-  }
-
-  const cards = upcoming.map(ev => {
-    const lbl = LABELS[ev.type];
-    return `<div class="upcoming-card upcoming-${ev.type}">
-      <div class="ev-head">
-        <div class="ev-icon bg-${ev.type}">${SVG[ev.type]}</div>
-        <div class="ev-info">
-          <div class="ev-type-lbl">${lbl} · Ronda ${ev.round}</div>
-          <div class="ev-name">${ev.name}</div>
-          <div class="ev-detail">📍 ${ev.location} &nbsp;·&nbsp; 📅 ${ev.date}</div>
-        </div>
-        <span class="ev-pill pill-${ev.type}">${lbl}</span>
-      </div>
-      <div class="upcoming-deadline">
-        <span class="deadline-label">Enviar pronóstico antes del</span>
-        <span class="deadline-time">⏰ ${ev.deadline}</span>
-      </div>
-    </div>`;
-  }).join('');
-
+function section(title, body) {
   return `<section>
-    <div class="sec-title"><h2>📅 Próximos Eventos</h2><div class="sec-line"></div></div>
-    <div class="upcoming-grid">${cards}</div>
+    <div class="sec-title"><h2>${title}</h2><div class="sec-line"></div></div>
+    ${body}
   </section>`;
 }
 
+function tableShell(headers, rows) {
+  return `<div class="tbl-wrap"><div class="tbl-scroll">
+    <table>
+      <thead><tr>${headers}</tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div></div>`;
+}
+
+function eventHead(ev) {
+  const lbl = EVENT_LABELS[ev.type];
+  return `<div class="ev-head">
+    <div class="ev-icon bg-${ev.type}">${SVG[ev.type]}</div>
+    <div class="ev-info">
+      <div class="ev-type-lbl">${lbl} · Ronda ${ev.round}</div>
+      <div class="ev-name">${ev.name}</div>
+      <div class="ev-detail">📍 ${ev.location} &nbsp;·&nbsp; 📅 ${ev.date}</div>
+    </div>
+    <span class="ev-pill pill-${ev.type}">${lbl}</span>
+  </div>`;
+}
+
+function standingsRow(d, maxPts, barWidth, barClass = '') {
+  const width = Math.round((d.pts / maxPts) * barWidth);
+  return `<tr class="${d.pos === 1 ? 'leader' : ''}">
+    <td><span class="${posClass(d.pos)}">${d.pos}</span></td>
+    <td>${changeIndicator(d.pos, d.prev)}</td>
+    <td><span class="dname">${d.name}</span></td>
+    <td>
+      <div class="pts-cell">
+        <span class="pts${d.pos === 1 ? ' gold' : ''}">${d.pts}</span>
+        <div class="pts-bar${barClass ? ' ' + barClass : ''}" style="width:${width}px"></div>
+      </div>
+    </td>
+  </tr>`;
+}
+
+const STANDINGS_HEADERS = `<th>POS</th><th>CAMBIO</th><th>JUGADOR</th><th>PTS</th></tr>`;
+
+export function renderGeneral(standings) {
+  const maxPts = standings[0]?.pts || 1;
+  const rows = standings.map(d => standingsRow(d, maxPts, 88)).join('');
+  return section('🏆 Clasificación General', tableShell(STANDINGS_HEADERS, rows));
+}
+
 export function renderByType(standingsByType) {
-  const TYPES = [
-    { key: 'f1',    label: 'Fórmula 1' },
-    { key: 'moto',  label: 'MotoGP' },
-    { key: 'rally', label: 'Rally WRC' },
-  ];
-
-  const tables = TYPES.map(({ key, label }) => {
+  const tables = EVENT_ORDER.map(key => {
     const s = standingsByType[key];
-    if (!s.length) return '';
+    if (!s?.length) return '';
     const maxPts = s[0].pts || 1;
-
-    const rows = s.map(d => {
-      const barWidth = Math.round((d.pts / maxPts) * 72);
-      return `<tr class="${d.pos === 1 ? 'leader' : ''}">
-        <td><span class="${posClass(d.pos)}">${d.pos}</span></td>
-        <td>${changeIndicator(d.pos, d.prev)}</td>
-        <td><span class="dname">${d.name}</span></td>
-        <td>
-          <div class="pts-cell">
-            <span class="pts${d.pos === 1 ? ' gold' : ''}">${d.pts}</span>
-            <div class="pts-bar pts-bar--${key}" style="width:${barWidth}px"></div>
-          </div>
-        </td>
-      </tr>`;
-    }).join('');
-
+    const rows = s.map(d => standingsRow(d, maxPts, 72, `pts-bar--${key}`)).join('');
     return `<div class="type-block">
-      <div class="type-block-hdr type-block-hdr--${key}">${label}</div>
+      <div class="type-block-hdr type-block-hdr--${key}">${EVENT_LABELS[key]}</div>
       <div class="tbl-wrap type-block-tbl"><div class="tbl-scroll">
         <table>
           <thead><tr><th>POS</th><th>CHG</th><th>JUGADOR</th><th>PTS</th></tr></thead>
@@ -142,76 +113,70 @@ export function renderPerfectScores(standings) {
     <td><span class="pts gold">${d.perfects}</span></td>
   </tr>`).join('');
 
-  return `<section>
-    <div class="sec-title"><h2>⭐ Tabla de Plenos</h2><div class="sec-line"></div></div>
-    <div class="tbl-wrap"><div class="tbl-scroll">
-      <table>
-        <thead><tr><th>POS</th><th>JUGADOR</th><th>PLENOS</th></tr></thead>
-        <tbody>${tableRows}</tbody>
-      </table>
-    </div></div>
-  </section>`;
+  return section('⭐ Tabla de Plenos', tableShell(`<th>POS</th><th>JUGADOR</th><th>PLENOS</th>`, tableRows));
 }
 
-export function renderGeneral(standings) {
-  const maxPts = standings[0]?.pts || 1;
+export function renderUpcoming(upcoming) {
+  if (upcoming.length === 0) {
+    return section('📅 Próximos Eventos', `<div class="upcoming-empty">No hay eventos programados para esta semana</div>`);
+  }
 
-  const rows = standings.map(d => {
-    const barWidth = Math.round((d.pts / maxPts) * 88);
-    return `<tr class="${d.pos === 1 ? 'leader' : ''}">
-      <td><span class="${posClass(d.pos)}">${d.pos}</span></td>
-      <td>${changeIndicator(d.pos, d.prev)}</td>
-      <td><span class="dname">${d.name}</span></td>
-      <td>
-        <div class="pts-cell">
-          <span class="pts${d.pos === 1 ? ' gold' : ''}">${d.pts}</span>
-          <div class="pts-bar" style="width:${barWidth}px"></div>
-        </div>
-      </td>
-    </tr>`;
-  }).join('');
+  const cards = upcoming.map(ev => `<div class="upcoming-card upcoming-${ev.type}">
+    ${eventHead(ev)}
+    <div class="upcoming-deadline">
+      <span class="deadline-label">Enviar pronóstico antes del</span>
+      <span class="deadline-time">⏰ ${ev.deadline}</span>
+    </div>
+  </div>`).join('');
 
-  return `<section>
-    <div class="sec-title"><h2>🏆 Clasificación General</h2><div class="sec-line"></div></div>
-    <div class="tbl-wrap"><div class="tbl-scroll">
-      <table>
-        <thead><tr><th>POS</th><th>CAMBIO</th><th>JUGADOR</th><th>PTS</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div></div>
-  </section>`;
+  return section('📅 Próximos Eventos', `<div class="upcoming-grid">${cards}</div>`);
+}
+
+function pickCell(guess, expected) {
+  const ok = guess === expected;
+  return `<td class="tc"><span class="pick ${ok ? 'pick-ok' : 'pick-fail'}">${ok ? '✓ ' : ''}${guess}</span></td>`;
+}
+
+function pickRow({ player, guesses }, result) {
+  const pts = calcPoints(result, guesses);
+  const cells = guesses.map((g, i) => pickCell(g, result[i])).join('');
+  return `<tr>
+    <td><span class="dname">${player}</span></td>
+    ${cells}
+    <td><span class="pts${pts > 0 ? ' gold' : ''}">${pts}</span></td>
+  </tr>`;
+}
+
+function resultStrip(result) {
+  const items = result
+    .map((pilot, i) => `<span class="res-item"><span class="res-pos">${i + 1}º</span>${pilot}</span>`)
+    .join('');
+  return `<div class="result-strip">
+    <span class="res-label">Resultado oficial</span>
+    ${items}
+  </div>`;
 }
 
 export function renderEvent(ev) {
-  const lbl = LABELS[ev.type];
-
   const sorted = ev.picks
     .map(p => ({ ...p, total: calcPoints(ev.result, p.guesses) }))
     .sort((a, b) => b.total - a.total);
 
+  const headers = `<th>JUGADOR</th>${POSITION_HEADERS}<th>TOTAL</th>`;
+  const rows = sorted.map(p => pickRow(p, ev.result)).join('');
+
   return `<div class="ev-card ev-${ev.type}">
-    <div class="ev-head">
-      <div class="ev-icon bg-${ev.type}">${SVG[ev.type]}</div>
-      <div class="ev-info">
-        <div class="ev-type-lbl">${lbl} · Ronda ${ev.round}</div>
-        <div class="ev-name">${ev.name}</div>
-        <div class="ev-detail">📍 ${ev.location} &nbsp;·&nbsp; 📅 ${ev.date}</div>
-      </div>
-      <span class="ev-pill pill-${ev.type}">${lbl}</span>
-    </div>
-    <div class="result-strip">
-      <span class="res-label">Resultado oficial</span>
-      ${buildResultStrip(ev.result)}
-    </div>
+    ${eventHead(ev)}
+    ${resultStrip(ev.result)}
     <div class="tbl-scroll">
       <table>
-        <thead><tr>
-          <th>JUGADOR</th>
-          <th class="tc">1º</th><th class="tc">2º</th><th class="tc">3º</th><th class="tc">4º</th><th class="tc">5º</th>
-          <th>TOTAL</th>
-        </tr></thead>
-        <tbody>${sorted.map(p => buildPickRow(p.player, p.guesses, ev.result)).join('')}</tbody>
+        <thead><tr>${headers}</tr></thead>
+        <tbody>${rows}</tbody>
       </table>
     </div>
   </div>`;
+}
+
+export function renderEvents(events) {
+  return section('Pronósticos por Evento', `<div class="events-list">${events.map(renderEvent).join('')}</div>`);
 }

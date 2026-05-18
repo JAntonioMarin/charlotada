@@ -263,6 +263,13 @@ td:last-child  { padding-right: 1.5rem; text-align: right; }
   background: linear-gradient(90deg, var(--gold), rgba(245, 166, 35, 0.25));
 }
 
+/* ── EVENTS LIST ──────────────────────────────────────────────────────────── */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 /* ── EVENT CARD ───────────────────────────────────────────────────────────── */
 .ev-card {
   border-radius: var(--radius);

@@ -1,4 +1,4 @@
-import { POINTS, PILOTS } from './config.js';
+import { POINTS, PERFECT_SCORE, PILOTS } from './config.js';
 
 export function calcPoints(result, guesses) {
   return guesses.reduce((sum, g, i) => sum + (g === result[i] ? POINTS[i] : 0), 0);
@@ -18,7 +18,7 @@ export function countPerfects(events) {
   const counts = {};
   events.forEach(ev => {
     ev.picks.forEach(({ player, guesses }) => {
-      if (calcPoints(ev.result, guesses) === 15) {
+      if (calcPoints(ev.result, guesses) === PERFECT_SCORE) {
         counts[player] = (counts[player] || 0) + 1;
       }
     });
@@ -41,23 +41,33 @@ export function validatePicks(events) {
   return errors;
 }
 
+function byPointsThenPerfects(perfects) {
+  return ([nameA, ptsA], [nameB, ptsB]) =>
+    ptsB !== ptsA
+      ? ptsB - ptsA
+      : (perfects[nameB] || 0) - (perfects[nameA] || 0);
+}
+
+function rankingMap(totals, perfects) {
+  return Object.fromEntries(
+    Object.entries(totals)
+      .sort(byPointsThenPerfects(perfects))
+      .map(([name], i) => [name, i + 1])
+  );
+}
+
 export function buildStandings(events) {
   const current  = sumTotals(events);
   const perfects = countPerfects(events);
 
   const prevEvents   = events.slice(1);
-  const prevTotals   = sumTotals(prevEvents);
-  const prevPerfects = countPerfects(prevEvents);
-
-  const prevRanking = Object.entries(prevTotals)
-    .sort(([nA, a], [nB, b]) => b !== a ? b - a : (prevPerfects[nB] || 0) - (prevPerfects[nA] || 0))
-    .reduce((map, [name], i) => ({ ...map, [name]: i + 1 }), {});
+  const prevRanking  = rankingMap(prevEvents.length ? sumTotals(prevEvents) : {}, countPerfects(prevEvents));
 
   return Object.entries(current)
-    .sort(([nA, a], [nB, b]) => b !== a ? b - a : (perfects[nB] || 0) - (perfects[nA] || 0))
+    .sort(byPointsThenPerfects(perfects))
     .map(([name, pts], i) => ({
-      pos:     i + 1,
-      prev:    prevRanking[name] ?? i + 1,
+      pos:      i + 1,
+      prev:     prevRanking[name] ?? i + 1,
       name,
       pts,
       perfects: perfects[name] || 0,

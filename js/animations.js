@@ -10,43 +10,34 @@ export function initCollapsibles() {
   });
 }
 
+function onceVisible(selector, threshold, onEnter) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      onEnter(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold });
+  document.querySelectorAll(selector).forEach(observer.observe.bind(observer));
+}
+
+function staggerRows(container) {
+  container.querySelectorAll('tbody tr').forEach((row, i) => {
+    row.style.animationDelay = `${i * 45}ms`;
+    row.classList.add('row-enter');
+  });
+}
+
 export function initAnimations() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Anima las filas de una tabla con stagger al entrar en viewport
-  function animateRows(container) {
-    container.querySelectorAll('tbody tr').forEach((row, i) => {
-      row.style.animationDelay = `${i * 45}ms`;
-      row.classList.add('row-enter');
-    });
-  }
-
-  const tableObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      animateRows(entry.target);
-      tableObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.05 });
-
-  const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('anim-in');
-      cardObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.06 });
-
-  document.querySelectorAll('.tbl-wrap').forEach(el => tableObserver.observe(el));
+  onceVisible('.tbl-wrap', 0.05, staggerRows);
 
   document.querySelectorAll('.ev-card').forEach((card, i) => {
     card.classList.add('anim-ready');
     card.style.transitionDelay = `${i * 30}ms`;
-    cardObserver.observe(card);
   });
+  document.querySelectorAll('.sec-title').forEach(el => el.classList.add('anim-ready'));
 
-  document.querySelectorAll('.sec-title').forEach(el => {
-    el.classList.add('anim-ready');
-    cardObserver.observe(el);
-  });
+  onceVisible('.ev-card, .sec-title', 0.06, el => el.classList.add('anim-in'));
 }

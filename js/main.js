@@ -1,33 +1,40 @@
-import { TOTAL_ROUNDS }              from './config.js';
-import { events, upcomingEvents }    from './data.js';
-import { buildStandings }            from './engine.js';
-import { renderGeneral, renderPerfectScores, renderByType, renderEvent, renderUpcoming } from './render.js';
+import { TOTAL_ROUNDS, LAST_UPDATE, EVENT_ORDER } from './config.js';
+import { events, upcomingEvents } from './data.js';
+import { buildStandings } from './engine.js';
+import {
+  renderGeneral, renderPerfectScores, renderByType,
+  renderEvents, renderUpcoming,
+} from './render.js';
 import { initAnimations, initCollapsibles } from './animations.js';
 
-const standings = buildStandings(events);
+const eventsByType = EVENT_ORDER.reduce((acc, key) => ({ ...acc, [key]: [] }), {});
+events.forEach(ev => eventsByType[ev.type]?.push(ev));
 
-const standingsByType = {
-  f1:    buildStandings(events.filter(e => e.type === 'f1')),
-  moto:  buildStandings(events.filter(e => e.type === 'moto')),
-  rally: buildStandings(events.filter(e => e.type === 'rally')),
+const standings       = buildStandings(events);
+const standingsByType = Object.fromEntries(
+  EVENT_ORDER.map(key => [key, buildStandings(eventsByType[key])])
+);
+
+const stats = {
+  'stat-completed': events.length,
+  'stat-remaining': TOTAL_ROUNDS - events.length,
+  'stat-players':   standings.length,
+  'stat-maxpts':    standings[0]?.pts ?? 0,
 };
+Object.entries(stats).forEach(([id, value]) => {
+  document.getElementById(id).textContent = value;
+});
 
-document.getElementById('stat-completed').textContent = events.length;
-document.getElementById('stat-remaining').textContent = TOTAL_ROUNDS - events.length;
-document.getElementById('stat-players').textContent   = standings.length;
-document.getElementById('stat-maxpts').textContent    = standings[0]?.pts ?? 0;
+const footer = document.getElementById('footer-update');
+if (footer) footer.textContent = LAST_UPDATE;
 
-document.getElementById('app').innerHTML =
-  renderUpcoming(upcomingEvents) +
-  renderGeneral(standings) +
-  renderPerfectScores(standings) +
-  renderByType(standingsByType) +
-  `<section>
-    <div class="sec-title"><h2>Pronósticos por Evento</h2><div class="sec-line"></div></div>
-    <div style="display:flex;flex-direction:column;gap:1.25rem">
-      ${events.map(renderEvent).join('')}
-    </div>
-  </section>`;
+document.getElementById('app').innerHTML = [
+  renderUpcoming(upcomingEvents),
+  renderGeneral(standings),
+  renderPerfectScores(standings),
+  renderByType(standingsByType),
+  renderEvents(events),
+].join('');
 
 initCollapsibles();
 initAnimations();
