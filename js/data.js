@@ -9,16 +9,46 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.F1,
-    round: 17,
-    name: 'GP de Canadá',
-    location: 'Circuito Gilles Villeneuve',
-    date: '24 may 2026, 22:00',
-    deadline: 'dom 24 may, 21:00',
+    type: EVENT_TYPES.RALLY,
+    round: 18,
+    name: 'Rally Japón',
+    location: 'Aichi (asfalto)',
+    date: '28-31 may 2026',
+    deadline: 'PENDIENTE',
+  },
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 19,
+    name: 'MotoGP Italia',
+    location: 'Autodromo del Mugello',
+    date: '31 may 2026, 14:00',
+    deadline: 'PENDIENTE',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 17,
+    name: 'GP de Canadá',
+    location: 'Circuito Gilles Villeneuve',
+    date: '24 may 2026',
+    result: ['Antonelli', 'Hamilton', 'Verstappen', 'Leclerc', 'Hadjar'],
+    picks: [
+      { player: 'Choro',    guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Hamilton'  ] },
+      { player: 'Dani',     guesses: ['Russell',   'Antonelli', 'Piastri',   'Norris',     'Verstappen'] },
+      { player: 'Juanra',   guesses: ['Antonelli', 'Russell',   'Norris',    'Piastri',    'Hamilton'  ] },
+      { player: 'Juano',    guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Hamilton'  ] },
+      { player: 'Sarri',    guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Hamilton'  ] },
+      { player: 'Lechero',  guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Verstappen'] },
+      { player: 'Cebolla',  guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Leclerc'   ] },
+      { player: 'Amador',   guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Hamilton'  ] },
+      { player: 'Pilili',   guesses: ['Russell',   'Antonelli', 'Leclerc',   'Verstappen', 'Hamilton'  ] },
+      { player: 'Calcetin', guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Hamilton'  ] },
+      { player: 'Angel',    guesses: ['Russell',   'Antonelli', 'Norris',    'Piastri',    'Verstappen'] },
+      { player: 'David',    guesses: ['Russell',   'Norris',    'Antonelli', 'Verstappen', 'Piastri'   ] },
+    ],
+  },
   {
     type: EVENT_TYPES.MOTO,
     round: 16,
