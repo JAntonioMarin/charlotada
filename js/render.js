@@ -13,10 +13,9 @@ const posClass  = p => POS_CLASS[p] || 'pos';
 
 const POSITION_HEADERS = POINTS.map((_, i) => `<th class="tc">${i + 1}º</th>`).join('');
 
-function changeIndicator(cur, prev) {
-  const d = prev - cur;
-  if (d > 0) return `<span class="chg up">${ARROW_UP}${d}</span>`;
-  if (d < 0) return `<span class="chg dn">${ARROW_DOWN}${Math.abs(d)}</span>`;
+function changeIndicator(change) {
+  if (change > 0) return `<span class="chg up">${ARROW_UP}${change}</span>`;
+  if (change < 0) return `<span class="chg dn">${ARROW_DOWN}${Math.abs(change)}</span>`;
   return `<span class="chg eq">${DASH}</span>`;
 }
 
@@ -53,7 +52,7 @@ function standingsRow(d, maxPts, barWidth, barClass = '') {
   const width = Math.round((d.pts / maxPts) * barWidth);
   return `<tr class="${d.pos === 1 ? 'leader' : ''}">
     <td><span class="${posClass(d.pos)}">${d.pos}</span></td>
-    <td>${changeIndicator(d.pos, d.prev)}</td>
+    <td>${changeIndicator(d.change)}</td>
     <td><span class="dname">${d.name}</span></td>
     <td>
       <div class="pts-cell">

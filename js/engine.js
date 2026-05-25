@@ -48,12 +48,25 @@ function byPointsThenPerfects(perfects) {
       : (perfects[nameB] || 0) - (perfects[nameA] || 0);
 }
 
+function rankWithTies(sorted) {
+  // pos:     dense ranking      (1, 2, 2, 3, 4) — lo que se muestra
+  // compPos: competition ranking (1, 2, 2, 4, 5) — para calcular el cambio sin inflar
+  let lastPts = null;
+  let densePos = 0;
+  let compPos = 0;
+  return sorted.map(([name, pts], i) => {
+    if (pts !== lastPts) {
+      densePos += 1;
+      compPos = i + 1;
+    }
+    lastPts = pts;
+    return { name, pts, pos: densePos, compPos };
+  });
+}
+
 function rankingMap(totals, perfects) {
-  return Object.fromEntries(
-    Object.entries(totals)
-      .sort(byPointsThenPerfects(perfects))
-      .map(([name], i) => [name, i + 1])
-  );
+  const sorted = Object.entries(totals).sort(byPointsThenPerfects(perfects));
+  return Object.fromEntries(rankWithTies(sorted).map(({ name, compPos }) => [name, compPos]));
 }
 
 export function buildStandings(events) {
@@ -63,13 +76,17 @@ export function buildStandings(events) {
   const prevEvents   = events.slice(1);
   const prevRanking  = rankingMap(prevEvents.length ? sumTotals(prevEvents) : {}, countPerfects(prevEvents));
 
-  return Object.entries(current)
-    .sort(byPointsThenPerfects(perfects))
-    .map(([name, pts], i) => ({
-      pos:      i + 1,
-      prev:     prevRanking[name] ?? i + 1,
+  const sorted = Object.entries(current).sort(byPointsThenPerfects(perfects));
+
+  return rankWithTies(sorted).map(({ name, pts, pos, compPos }) => {
+    const prev = prevRanking[name] ?? compPos;
+    return {
+      pos,
+      prev,
+      change: prev - compPos,
       name,
       pts,
       perfects: perfects[name] || 0,
-    }));
+    };
+  });
 }

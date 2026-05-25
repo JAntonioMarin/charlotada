@@ -195,9 +195,9 @@ describe('buildStandings', () => {
     expect(s.find(d => d.name === 'Luis').perfects).toBe(0);
   });
 
-  it('desempate en puntos: más plenos → posición superior', () => {
-    // Ana: evento reciente 5pts + evento previo 10pts = 15pts, 0 plenos
-    // Luis: evento reciente 0pts + evento previo 15pts = 15pts, 1 pleno → gana el desempate
+  it('empate a puntos: comparten posición, el de más plenos aparece primero en el listado', () => {
+    // Ana: 15pts, 0 plenos — Luis: 15pts, 1 pleno
+    // Ambos pos 1, pero Luis (más plenos) sale antes en el array.
     const events = [
       {
         result: R,
@@ -214,10 +214,75 @@ describe('buildStandings', () => {
         ],
       },
     ];
-    // Ana: 15pts, 0 plenos — Luis: 15pts, 1 pleno → Luis 1º
     const s = buildStandings(events);
     expect(s[0].name).toBe('Luis');
     expect(s[1].name).toBe('Ana');
+    expect(s[0].pos).toBe(1);
+    expect(s[1].pos).toBe(1);
+  });
+
+  it('empate arriba no infla el cambio de posición de los de abajo', () => {
+    // Evento previo: A=10, B=8, C=6, D=4, E=2 (sin empates: 1,2,3,4,5)
+    // Evento reciente: solo B suma 2 → A=10, B=10, C=6, D=4, E=2
+    // Tras el evento: A y B empatados a 10 (pos 1 dense ambos), C/D/E sin moverse realmente
+    const events = [
+      {
+        result: R,
+        picks: [
+          { player: 'A', guesses: ['X', 'X', 'X', 'X', 'X'] }, // 0
+          { player: 'B', guesses: ['X', 'X', 'X', 'D', 'X'] }, // 2
+          { player: 'C', guesses: ['X', 'X', 'X', 'X', 'X'] }, // 0
+          { player: 'D', guesses: ['X', 'X', 'X', 'X', 'X'] }, // 0
+          { player: 'E', guesses: ['X', 'X', 'X', 'X', 'X'] }, // 0
+        ],
+      },
+      {
+        result: R,
+        picks: [
+          { player: 'A', guesses: ['A', 'B', 'X', 'X', 'E'] }, // 5+4+1 = 10
+          { player: 'B', guesses: ['A', 'X', 'C', 'X', 'X'] }, // 5+3   = 8
+          { player: 'C', guesses: ['X', 'B', 'X', 'D', 'X'] }, // 4+2   = 6
+          { player: 'D', guesses: ['X', 'B', 'X', 'X', 'X'] }, // 4
+          { player: 'E', guesses: ['X', 'X', 'X', 'D', 'X'] }, // 2
+        ],
+      },
+    ];
+    const s = buildStandings(events);
+    const find = name => s.find(d => d.name === name);
+
+    // Dense ranking visible
+    expect(find('A').pos).toBe(1);
+    expect(find('B').pos).toBe(1);
+    expect(find('C').pos).toBe(2);
+    expect(find('D').pos).toBe(3);
+    expect(find('E').pos).toBe(4);
+
+    // El cambio NO se infla para C/D/E (no han movido realmente)
+    expect(find('C').change).toBe(0);
+    expect(find('D').change).toBe(0);
+    expect(find('E').change).toBe(0);
+
+    // B sí sube (alcanzó a A en puntos)
+    expect(find('B').change).toBe(1);
+    expect(find('A').change).toBe(0);
+  });
+
+  it('empate a puntos: dense ranking 1-2-2-3 (no salta posiciones)', () => {
+    const events = [{
+      result: R,
+      picks: [
+        { player: 'A', guesses: ['A', 'X', 'X', 'X', 'X'] }, // 5 pts
+        { player: 'B', guesses: ['X', 'B', 'X', 'X', 'X'] }, // 4 pts
+        { player: 'C', guesses: ['X', 'B', 'X', 'X', 'X'] }, // 4 pts (empate con B)
+        { player: 'D', guesses: ['X', 'X', 'X', 'X', 'X'] }, // 0 pts
+      ],
+    }];
+    const s = buildStandings(events);
+    const find = name => s.find(d => d.name === name);
+    expect(find('A').pos).toBe(1);
+    expect(find('B').pos).toBe(2);
+    expect(find('C').pos).toBe(2);
+    expect(find('D').pos).toBe(3); // dense ranking: 3, no 4
   });
 
   it('sin empate en puntos: los plenos no alteran el orden', () => {
