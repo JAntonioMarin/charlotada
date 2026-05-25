@@ -14,7 +14,7 @@ export const upcomingEvents = [
     name: 'Rally Japón',
     location: 'Aichi (asfalto)',
     date: '28-31 may 2026',
-    deadline: 'PENDIENTE',
+    deadline: 'jue 28 may, 23:59',
   },
   {
     type: EVENT_TYPES.MOTO,
@@ -22,7 +22,7 @@ export const upcomingEvents = [
     name: 'MotoGP Italia',
     location: 'Autodromo del Mugello',
     date: '31 may 2026, 14:00',
-    deadline: 'PENDIENTE',
+    deadline: 'dom 31 may, 13:00',
   },
 ];
 
