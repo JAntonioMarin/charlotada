@@ -9,24 +9,68 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.RALLY,
+    type: EVENT_TYPES.F1,
     round: 18,
-    name: 'Rally Japón',
-    location: 'Aichi (asfalto)',
-    date: '28-31 may 2026',
-    deadline: 'jue 28 may, 23:59',
+    name: 'GP de Mónaco',
+    location: 'Circuit de Monaco',
+    date: '7 jun 2026, 15:00',
+    deadline: 'dom 7 jun, 14:00',
   },
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 20,
+    name: 'MotoGP Hungría',
+    location: 'Balaton Park Circuit',
+    date: '7 jun 2026, 14:00',
+    deadline: 'dom 7 jun, 13:00',
+  },
+];
+
+export const events = [
   {
     type: EVENT_TYPES.MOTO,
     round: 19,
     name: 'MotoGP Italia',
     location: 'Autodromo del Mugello',
-    date: '31 may 2026, 14:00',
-    deadline: 'dom 31 may, 13:00',
+    date: '31 may 2026',
+    result: ['Bezzecchi', 'Martin', 'Bagnaia', 'Ogura', 'Giannantonio'],
+    picks: [
+      { player: 'Choro',    guesses: ['Bezzecchi',    'Martin',      'Giannantonio', 'M Marquez',    'Fernandez'   ] },
+      { player: 'Dani',     guesses: ['Giannantonio', 'Fernandez',   'Bezzecchi',    'M Marquez',    'Bagnaia'     ] },
+      { player: 'Juanra',   guesses: ['Martin',       'Fernandez',   'Bezzecchi',    'M Marquez',    'Giannantonio'] },
+      { player: 'Juano',    guesses: ['Bezzecchi',    'Martin',      'Fernandez',    'Giannantonio', 'Bagnaia'     ] },
+      { player: 'Sarri',    guesses: ['Martin',       'Bezzecchi',   'Giannantonio', 'M Marquez',    'Fernandez'   ] },
+      { player: 'Lechero',  guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Cebolla',  guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Amador',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Bezzecchi',    'M Marquez',   'Martin',       'Fernandez',    'Bagnaia'     ] },
+      { player: 'Angel',    guesses: ['Martin',       'Fernandez',   'Bezzecchi',    'Giannantonio', 'Aldeguer'    ] },
+      { player: 'David',    guesses: ['Giannantonio', 'Martin',      'Bezzecchi',    'Fernandez',    'M Marquez'   ] },
+    ],
   },
-];
-
-export const events = [
+  {
+    type: EVENT_TYPES.RALLY,
+    round: 18,
+    name: 'Rally Japón',
+    location: 'Aichi (asfalto)',
+    date: '28-31 may 2026',
+    result: ['Evans', 'Ogier', 'Pajari', 'Katsuta', 'Fourmaux'],
+    picks: [
+      { player: 'Choro',    guesses: ['Ogier',   'Solberg', 'Evans',   'Neuville', 'Katsuta'  ] },
+      { player: 'Dani',     guesses: ['Evans',   'Ogier',   'Pajari',  'Fourmaux', 'Katsuta'  ] },
+      { player: 'Juanra',   guesses: ['Ogier',   'Solberg', 'Evans',   'Katsuta',  'Pajari'   ] },
+      { player: 'Juano',    guesses: ['Ogier',   'Evans',   'Solberg', 'Katsuta',  'Pajari'   ] },
+      { player: 'Sarri',    guesses: ['Ogier',   'Solberg', 'Evans',   'Katsuta',  'Neuville' ] },
+      { player: 'Lechero',  guesses: ['Ogier',   'Katsuta', 'Solberg', 'Evans',    'Pajari'   ] },
+      { player: 'Cebolla',  guesses: ['Ogier',   'Evans',   'Solberg', 'Katsuta',  'Fourmaux' ] },
+      { player: 'Amador',   guesses: ['Ogier',   'Evans',   'Solberg', 'Katsuta',  'Neuville' ] },
+      { player: 'Pilili',   guesses: ['Ogier',   'Evans',   'Pajari',  'Solberg',  'Neuville' ] },
+      { player: 'Calcetin', guesses: ['Ogier',   'Solberg', 'Evans',   'Katsuta',  'Pajari'   ] },
+      { player: 'Angel',    guesses: ['Ogier',   'Solberg', 'Evans',   'Katsuta',  'Pajari'   ] },
+      { player: 'David',    guesses: ['Katsuta', 'Evans',   'Pajari',  'Ogier',    'Solberg'  ] },
+    ],
+  },
   {
     type: EVENT_TYPES.F1,
     round: 17,
