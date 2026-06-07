@@ -4,7 +4,7 @@ export const TOTAL_ROUNDS = 58;
 
 export const PERFECT_SCORE = POINTS.reduce((sum, p) => sum + p, 0);
 
-export const LAST_UPDATE = '31 de Mayo de 2026';
+export const LAST_UPDATE = '7 de Junio de 2026';
 
 export const EVENT_TYPES = {
   RALLY: 'rally',
@@ -37,6 +37,6 @@ export const PILOTS = {
     'M Marquez', 'A Marquez', 'Bezzecchi', 'Giannantonio', 'Martin',
     'Acosta', 'Ogura', 'Fernandez', 'Bagnaia', 'Bastianini',
     'Miller', 'Binder', 'Zarco', 'Morbidelli', 'Rins',
-    'Nakagami', 'Quartararo', 'Mir', 'Aldeguer',
+    'Nakagami', 'Quartararo', 'Mir', 'Aldeguer', 'Marini',
   ]),
 };

@@ -10,23 +10,59 @@ import { EVENT_TYPES } from './config.js';
 export const upcomingEvents = [
   {
     type: EVENT_TYPES.F1,
-    round: 18,
+    round: 22,
+    name: 'GP de España',
+    location: 'Circuit de Barcelona-Catalunya',
+    date: '14 jun 2026',
+    deadline: 'dom 14 jun, 14:00',
+  },
+];
+
+export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 21,
     name: 'GP de Mónaco',
     location: 'Circuit de Monaco',
-    date: '7 jun 2026, 15:00',
-    deadline: 'dom 7 jun, 14:00',
+    date: '7 jun 2026',
+    result: ['Antonelli', 'Hamilton', 'Hadjar', 'Piastri', 'Lawson'],
+    picks: [
+      { player: 'Choro',    guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Dani',     guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Hadjar' ] },
+      { player: 'Juanra',   guesses: ['Verstappen', 'Antonelli',  'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Juano',    guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Sarri',    guesses: ['Verstappen', 'Antonelli',  'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Lechero',  guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Cebolla',  guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Amador',   guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'Angel',    guesses: ['Antonelli',  'Verstappen', 'Hamilton', 'Leclerc', 'Russell'] },
+      { player: 'David',    guesses: ['Antonelli',  'Verstappen', 'Leclerc',  'Hamilton','Russell'] },
+    ],
   },
   {
     type: EVENT_TYPES.MOTO,
     round: 20,
     name: 'MotoGP Hungría',
     location: 'Balaton Park Circuit',
-    date: '7 jun 2026, 14:00',
-    deadline: 'dom 7 jun, 13:00',
+    date: '7 jun 2026',
+    result: ['M Marquez', 'Acosta', 'Bagnaia', 'Ogura', 'Marini'],
+    picks: [
+      { player: 'Choro',    guesses: ['M Marquez', 'Bezzecchi', 'Martin',    'Bagnaia',     'Acosta'      ] },
+      { player: 'Dani',     guesses: ['M Marquez', 'Acosta',    'Bezzecchi', 'Martin',      'Fernandez'   ] },
+      { player: 'Juanra',   guesses: ['M Marquez', 'Acosta',    'Bezzecchi', 'Martin',      'Aldeguer'    ] },
+      { player: 'Juano',    guesses: ['M Marquez', 'Acosta',    'Bezzecchi', 'Aldeguer',    'Martin'      ] },
+      { player: 'Sarri',    guesses: ['M Marquez', 'Bezzecchi', 'Martin',    'Aldeguer',    'Acosta'      ] },
+      { player: 'Lechero',  guesses: ['M Marquez', 'Bezzecchi', 'Acosta',    'Aldeguer',    'Fernandez'   ] },
+      { player: 'Cebolla',  guesses: ['M Marquez', 'Bezzecchi', 'Martin',    'Fernandez',   'Acosta'      ] },
+      { player: 'Amador',   guesses: ['M Marquez', 'Acosta',    'Bezzecchi', 'Martin',      'Giannantonio'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['M Marquez', 'Acosta',    'Bezzecchi', 'Aldeguer',    'Fernandez'   ] },
+      { player: 'Angel',    guesses: ['M Marquez', 'Bezzecchi', 'Acosta',    'Martin',      'Fernandez'   ] },
+      { player: 'David',    guesses: ['M Marquez', 'Acosta',    'Fernandez', 'Bezzecchi',   'Martin'      ] },
+    ],
   },
-];
-
-export const events = [
   {
     type: EVENT_TYPES.MOTO,
     round: 19,
