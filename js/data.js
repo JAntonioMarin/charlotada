@@ -9,16 +9,54 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
+    type: EVENT_TYPES.RALLY,
+    round: 24,
+    name: 'Rally Acrópolis',
+    location: 'Grecia',
+    date: '25-28 jun 2026',
+    deadline: 'jue 25 jun, 23:59',
+  },
+  {
     type: EVENT_TYPES.MOTO,
-    round: 23,
-    name: 'MotoGP Chequia',
-    location: 'Automotodrom Brno',
-    date: '21 jun 2026, 14:00',
-    deadline: 'dom 21 jun, 13:00',
+    round: 25,
+    name: 'MotoGP Países Bajos',
+    location: 'TT Circuit Assen',
+    date: '28 jun 2026, 14:00',
+    deadline: 'dom 28 jun, 13:00',
+  },
+  {
+    type: EVENT_TYPES.F1,
+    round: 26,
+    name: 'GP de Austria',
+    location: 'Red Bull Ring',
+    date: '28 jun 2026, 15:00',
+    deadline: 'dom 28 jun, 14:00',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 23,
+    name: 'MotoGP Chequia',
+    location: 'Automotodrom Brno',
+    date: '21 jun 2026',
+    result: ['M Marquez', 'Ogura', 'Bagnaia', 'Giannantonio', 'Mir'],
+    picks: [
+      { player: 'Choro',    guesses: ['M Marquez', 'Bagnaia',      'Martin',       'Giannantonio', 'Ogura'     ] },
+      { player: 'Dani',     guesses: ['M Marquez', 'Bagnaia',      'Fernandez',    'Ogura',        'Acosta'    ] },
+      { player: 'Juanra',   guesses: ['M Marquez', 'Ogura',        'Bagnaia',      'Giannantonio', 'Fernandez' ] },
+      { player: 'Juano',    guesses: ['M Marquez', 'Ogura',        'Bagnaia',      'Giannantonio', 'Acosta'    ] },
+      { player: 'Sarri',    guesses: ['M Marquez', 'Bagnaia',      'Giannantonio', 'Ogura',        'Martin'    ] },
+      { player: 'Lechero',  guesses: ['Ogura',     'M Marquez',    'Bagnaia',      'Giannantonio', 'Acosta'    ] },
+      { player: 'Cebolla',  guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Amador',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Pilili',   guesses: ['M Marquez', 'Giannantonio', 'Ogura',        'Bagnaia',      'Acosta'    ] },
+      { player: 'Calcetin', guesses: ['M Marquez', 'Bagnaia',      'Ogura',        'Giannantonio', 'Martin'    ] },
+      { player: 'Angel',    guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'David',    guesses: ['Bagnaia',   'M Marquez',    'Giannantonio', 'Bastianini',   'Fernandez' ] },
+    ],
+  },
   {
     type: EVENT_TYPES.F1,
     round: 22,

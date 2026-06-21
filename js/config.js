@@ -4,7 +4,7 @@ export const TOTAL_ROUNDS = 58;
 
 export const PERFECT_SCORE = POINTS.reduce((sum, p) => sum + p, 0);
 
-export const LAST_UPDATE = '14 de Junio de 2026';
+export const LAST_UPDATE = '21 de Junio de 2026';
 
 export const EVENT_TYPES = {
   RALLY: 'rally',
