@@ -14,7 +14,6 @@ export const upcomingEvents = [
     name: 'Rally Acrópolis',
     location: 'Grecia',
     date: '25-28 jun 2026',
-    deadline: 'jue 25 jun, 23:59',
   },
   {
     type: EVENT_TYPES.MOTO,
@@ -22,7 +21,6 @@ export const upcomingEvents = [
     name: 'MotoGP Países Bajos',
     location: 'TT Circuit Assen',
     date: '28 jun 2026, 14:00',
-    deadline: 'dom 28 jun, 13:00',
   },
   {
     type: EVENT_TYPES.F1,
@@ -30,7 +28,6 @@ export const upcomingEvents = [
     name: 'GP de Austria',
     location: 'Red Bull Ring',
     date: '28 jun 2026, 15:00',
-    deadline: 'dom 28 jun, 14:00',
   },
 ];
 

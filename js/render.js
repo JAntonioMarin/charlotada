@@ -123,8 +123,11 @@ export function renderUpcoming(upcoming) {
   const cards = upcoming.map(ev => `<div class="upcoming-card upcoming-${ev.type}">
     ${eventHead(ev)}
     <div class="upcoming-deadline">
-      <span class="deadline-label">Enviar pronóstico antes del</span>
-      <span class="deadline-time">⏰ ${ev.deadline}</span>
+      ${ev.deadline
+        ? `<span class="deadline-label">Enviar pronóstico antes del</span>
+           <span class="deadline-time">⏰ ${ev.deadline}</span>`
+        : `<span class="deadline-label">Enviar pronóstico</span>
+           <span class="deadline-time">📲 Consultar grupo de WhatsApp</span>`}
     </div>
   </div>`).join('');
 
