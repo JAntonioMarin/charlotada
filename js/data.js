@@ -9,15 +9,37 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.F1,
-    round: 27,
-    name: 'GP de Gran Bretaña',
-    location: 'Silverstone',
-    date: '5 jul 2026, 16:00',
+    type: EVENT_TYPES.MOTO,
+    round: 28,
+    name: 'MotoGP Alemania',
+    location: 'Sachsenring',
+    date: '12 jul 2026, 14:00',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 27,
+    name: 'GP de Gran Bretaña',
+    location: 'Silverstone',
+    date: '5 jul 2026',
+    result: ['Leclerc', 'Russell', 'Hamilton', 'Norris', 'Hadjar'],
+    picks: [
+      { player: 'Choro',    guesses: ['Antonelli', 'Russell',  'Leclerc',  'Hamilton', 'Norris'    ] },
+      { player: 'Dani',     guesses: ['Antonelli', 'Hamilton', 'Russell',  'Norris',   'Piastri'   ] },
+      { player: 'Juanra',   guesses: ['Antonelli', 'Hamilton', 'Russell',  'Leclerc',  'Norris'    ] },
+      { player: 'Juano',    guesses: ['Antonelli', 'Hamilton', 'Russell',  'Leclerc',  'Verstappen'] },
+      { player: 'Sarri',    guesses: ['Antonelli', 'Russell',  'Hamilton', 'Leclerc',  'Norris'    ] },
+      { player: 'Lechero',  guesses: ['Antonelli', 'Hamilton', 'Russell',  'Leclerc',  'Norris'    ] },
+      { player: 'Cebolla',  guesses: ['Antonelli', 'Hamilton', 'Russell',  'Leclerc',  'Norris'    ] },
+      { player: 'Amador',   guesses: ['Antonelli', 'Russell',  'Leclerc',  'Hamilton', 'Verstappen'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Antonelli', 'Russell',  'Hamilton', 'Leclerc',  'Norris'    ] },
+      { player: 'Angel',    guesses: ['Antonelli', 'Hamilton', 'Leclerc',  'Russell',  'Norris'    ] },
+      { player: 'David',    guesses: ['Antonelli', 'Hamilton', 'Leclerc',  'Russell',  'Norris'    ] },
+    ],
+  },
   {
     type: EVENT_TYPES.F1,
     round: 26,
