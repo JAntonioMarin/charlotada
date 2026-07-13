@@ -9,15 +9,44 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.MOTO,
-    round: 28,
-    name: 'MotoGP Alemania',
-    location: 'Sachsenring',
-    date: '12 jul 2026, 14:00',
+    type: EVENT_TYPES.RALLY,
+    round: 29,
+    name: 'Rally Estonia',
+    location: 'Estonia',
+    date: '16-19 jul 2026',
+  },
+  {
+    type: EVENT_TYPES.F1,
+    round: 30,
+    name: 'GP de Bélgica',
+    location: 'Spa-Francorchamps',
+    date: '19 jul 2026, 15:00',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 28,
+    name: 'MotoGP Alemania',
+    location: 'Sachsenring',
+    date: '12 jul 2026',
+    result: ['M Marquez', 'Ogura', 'Fernandez', 'Acosta', 'Martin'],
+    picks: [
+      { player: 'Choro',    guesses: ['M Marquez', 'A Marquez',    'Giannantonio', 'Ogura',        'Martin'       ] },
+      { player: 'Dani',     guesses: ['M Marquez', 'A Marquez',    'Giannantonio', 'Fernandez',    'Ogura'        ] },
+      { player: 'Juanra',   guesses: ['M Marquez', 'Giannantonio', 'A Marquez',    'Ogura',        'Fernandez'    ] },
+      { player: 'Juano',    guesses: ['M Marquez', 'Ogura',        'Giannantonio', 'A Marquez',    'Fernandez'    ] },
+      { player: 'Sarri',    guesses: ['M Marquez', 'Giannantonio', 'A Marquez',    'Ogura',        'Martin'       ] },
+      { player: 'Lechero',  guesses: ['M Marquez', 'A Marquez',    'Giannantonio', 'Ogura',        'Martin'       ] },
+      { player: 'Cebolla',  guesses: ['M Marquez', 'Martin',       'Ogura',        'Fernandez',    'Giannantonio' ] },
+      { player: 'Amador',   guesses: ['M Marquez', 'A Marquez',    'Giannantonio', 'Quartararo',   'Bagnaia'      ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['M Marquez', 'A Marquez',    'Giannantonio', 'Ogura',        'Fernandez'    ] },
+      { player: 'Angel',    guesses: ['M Marquez', 'A Marquez',    'Ogura',        'Giannantonio', 'Fernandez'    ] },
+      { player: 'David',    guesses: ['M Marquez', 'Giannantonio', 'A Marquez',    'Fernandez',    'Quartararo'   ] },
+    ],
+  },
   {
     type: EVENT_TYPES.F1,
     round: 27,
