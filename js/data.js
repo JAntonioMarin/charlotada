@@ -9,22 +9,59 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
-    type: EVENT_TYPES.RALLY,
-    round: 29,
-    name: 'Rally Estonia',
-    location: 'Estonia',
-    date: '16-19 jul 2026',
+    type: EVENT_TYPES.F1,
+    round: 31,
+    name: 'GP de Hungría',
+    location: 'Hungaroring',
+    date: '26 jul 2026, 15:00',
   },
+];
+
+export const events = [
   {
     type: EVENT_TYPES.F1,
     round: 30,
     name: 'GP de Bélgica',
     location: 'Spa-Francorchamps',
-    date: '19 jul 2026, 15:00',
+    date: '19 jul 2026',
+    result: ['Antonelli', 'Leclerc', 'Verstappen', 'Hamilton', 'Piastri'],
+    picks: [
+      { player: 'Choro',    guesses: ['Antonelli', 'Verstappen', 'Russell',    'Leclerc',  'Hamilton'  ] },
+      { player: 'Dani',     guesses: ['Antonelli', 'Russell',    'Leclerc',    'Piastri',  'Hamilton'  ] },
+      { player: 'Juanra',   guesses: ['Antonelli', 'Verstappen', 'Russell',    'Leclerc',  'Hamilton'  ] },
+      { player: 'Juano',    guesses: ['Antonelli', 'Verstappen', 'Russell',    'Hamilton', 'Leclerc'   ] },
+      { player: 'Sarri',    guesses: ['Antonelli', 'Russell',    'Verstappen', 'Leclerc',  'Hamilton'  ] },
+      { player: 'Lechero',  guesses: ['Antonelli', 'Russell',    'Verstappen', 'Hamilton', 'Leclerc'   ] },
+      { player: 'Cebolla',  guesses: ['Antonelli', 'Russell',    'Leclerc',    'Hamilton', 'Verstappen'] },
+      { player: 'Amador',   guesses: ['Antonelli', 'Verstappen', 'Russell',    'Leclerc',  'Hamilton'  ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Antonelli', 'Verstappen', 'Russell',    'Hamilton', 'Leclerc'   ] },
+      { player: 'Angel',    guesses: ['Antonelli', 'Russell',    'Verstappen', 'Hamilton', 'Leclerc'   ] },
+      { player: 'David',    guesses: ['Antonelli', 'Verstappen', 'Russell',    'Norris',   'Leclerc'   ] },
+    ],
   },
-];
-
-export const events = [
+  {
+    type: EVENT_TYPES.RALLY,
+    round: 29,
+    name: 'Rally Estonia',
+    location: 'Estonia',
+    date: '16-19 jul 2026',
+    result: ['Pajari', 'Solberg', 'Fourmaux', 'Neuville', 'Ogier'],
+    picks: [
+      { player: 'Choro',    guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Dani',     guesses: ['Solberg',  'Evans',    'Neuville', 'Pajari',   'Fourmaux'] },
+      { player: 'Juanra',   guesses: ['Solberg',  'Ogier',    'Evans',    'Neuville', 'Pajari'  ] },
+      { player: 'Juano',    guesses: ['Ogier',    'Solberg',  'Evans',    'Neuville', 'Pajari'  ] },
+      { player: 'Sarri',    guesses: ['Solberg',  'Ogier',    'Evans',    'Pajari',   'Neuville'] },
+      { player: 'Lechero',  guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Cebolla',  guesses: ['Solberg',  'Ogier',    'Evans',    'Neuville', 'Katsuta' ] },
+      { player: 'Amador',   guesses: ['Evans',    'Neuville', 'Ogier',    'Solberg',  'Fourmaux'] },
+      { player: 'Pilili',   guesses: ['Neuville', 'Solberg',  'Evans',    'Pajari',   'Fourmaux'] },
+      { player: 'Calcetin', guesses: ['Solberg',  'Ogier',    'Evans',    'Pajari',   'Katsuta' ] },
+      { player: 'Angel',    guesses: ['Ogier',    'Evans',    'Solberg',  'Neuville', 'Katsuta' ] },
+      { player: 'David',    guesses: ['Evans',    'Pajari',   'Solberg',  'Neuville', 'Ogier'   ] },
+    ],
+  },
   {
     type: EVENT_TYPES.MOTO,
     round: 28,
