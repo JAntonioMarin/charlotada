@@ -9,15 +9,37 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
+    type: EVENT_TYPES.MOTO,
+    round: 33,
+    name: 'MotoGP Gran Bretaña',
+    location: 'Silverstone',
+    date: '9 ago 2026',
+  },
+];
+
+export const events = [
+  {
     type: EVENT_TYPES.RALLY,
     round: 32,
     name: 'Rally Finlandia',
     location: 'Jyväskylä',
     date: '30 jul-2 ago 2026',
+    result: ['Pajari', 'Solberg', 'Evans', 'Fourmaux', 'Neuville'],
+    picks: [
+      { player: 'Choro',    guesses: ['Ogier', 'Solberg',  'Evans',   'Pajari',  'Neuville' ] },
+      { player: 'Dani',     guesses: ['Ogier', 'Neuville', 'Pajari',  'Katsuta', 'Fourmaux' ] },
+      { player: 'Juanra',   guesses: ['Solberg', 'Ogier',  'Katsuta', 'Evans',   'Pajari'   ] },
+      { player: 'Juano',    guesses: ['Pajari', 'Solberg', 'Ogier',   'Evans',   'Katsuta'  ] },
+      { player: 'Sarri',    guesses: ['Ogier', 'Solberg',  'Katsuta', 'Pajari',  'Evans'    ] },
+      { player: 'Lechero',  guesses: ['Ogier', 'Katsuta',  'Solberg', 'Sesks',   'Evans'    ] },
+      { player: 'Cebolla',  guesses: ['Pajari', 'Evans',   'Ogier',   'Katsuta', 'Fourmaux' ] },
+      { player: 'Amador',   guesses: ['Evans', 'Pajari',   'Ogier',   'Solberg', 'Katsuta'  ] },
+      { player: 'Pilili',   guesses: ['Ogier', 'Neuville', 'Pajari',  'Katsuta', 'Fourmaux' ] },
+      { player: 'Calcetin', guesses: ['Solberg', 'Ogier',  'Katsuta', 'Evans',   'Lappi'    ] },
+      { player: 'Angel',    guesses: ['Ogier', 'Solberg',  'Evans',   'Katsuta', 'Pajari'   ] },
+      { player: 'David',    guesses: ['Evans', 'Ogier',    'Neuville','Lappi',   'Pajari'   ] },
+    ],
   },
-];
-
-export const events = [
   {
     type: EVENT_TYPES.F1,
     round: 31,
