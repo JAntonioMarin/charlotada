@@ -9,15 +9,37 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
+    type: EVENT_TYPES.F1,
+    round: 34,
+    name: 'GP de Holanda',
+    location: 'Zandvoort',
+    date: '23 ago 2026',
+  },
+];
+
+export const events = [
+  {
     type: EVENT_TYPES.MOTO,
     round: 33,
     name: 'MotoGP Gran Bretaña',
     location: 'Silverstone',
     date: '9 ago 2026',
+    result: ['Fernandez', 'Martin', 'Bezzecchi', 'A Marquez', 'Acosta'],
+    picks: [
+      { player: 'Choro',    guesses: ['Martin', 'Ogura',   'Bezzecchi', 'M Marquez', 'A Marquez'   ] },
+      { player: 'Dani',     guesses: ['Bezzecchi', 'A Marquez', 'Martin', 'M Marquez', 'Morbidelli'] },
+      { player: 'Juanra',   guesses: ['Martin', 'Ogura',   'Bezzecchi', 'M Marquez', 'Giannantonio'] },
+      { player: 'Juano',    guesses: ['Martin', 'Ogura',   'Bezzecchi', 'Fernandez', 'M Marquez'   ] },
+      { player: 'Sarri',    guesses: ['Martin', 'Ogura',   'Fernandez', 'Bezzecchi', 'M Marquez'   ] },
+      { player: 'Lechero',  guesses: ['Martin', 'Ogura',   'Bezzecchi', 'Fernandez', 'M Marquez'   ] },
+      { player: 'Cebolla',  guesses: ['Martin', 'Ogura',   'Bezzecchi', 'M Marquez', 'A Marquez'   ] },
+      { player: 'Amador',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Ogura', 'Martin',   'Bezzecchi', 'M Marquez', 'A Marquez'   ] },
+      { player: 'Angel',    guesses: ['Martin', 'Ogura',   'Fernandez', 'Bezzecchi', 'M Marquez'   ] },
+      { player: 'David',    guesses: ['Martin', 'Bezzecchi', 'M Marquez', 'A Marquez', 'Acosta'    ] },
+    ],
   },
-];
-
-export const events = [
   {
     type: EVENT_TYPES.RALLY,
     round: 32,
