@@ -9,11 +9,36 @@ import { EVENT_TYPES } from './config.js';
 
 export const upcomingEvents = [
   {
+    type: EVENT_TYPES.F1,
+    round: 37,
+    name: 'GP de Italia',
+    location: 'Monza',
+    date: '6 sep 2026',
+  },
+];
+
+export const events = [
+  {
     type: EVENT_TYPES.MOTO,
     round: 35,
     name: 'MotoGP Aragón',
     location: 'MotorLand Aragón',
     date: '30 ago 2026',
+    result: ['M Marquez', 'Acosta', 'Bezzecchi', 'A Marquez', 'Martin'],
+    picks: [
+      { player: 'Choro',    guesses: ['Bezzecchi', 'Martin',    'M Marquez', 'A Marquez', 'Acosta'   ] },
+      { player: 'Dani',     guesses: ['M Marquez', 'A Marquez', 'Acosta',    'Bezzecchi', 'Bagnaia'  ] },
+      { player: 'Juanra',   guesses: ['M Marquez', 'Bezzecchi', 'A Marquez', 'Martin',    'Acosta'   ] },
+      { player: 'Juano',    guesses: ['M Marquez', 'A Marquez', 'Bezzecchi', 'Martin',    'Acosta'   ] },
+      { player: 'Sarri',    guesses: ['M Marquez', 'A Marquez', 'Bezzecchi', 'Martin',    'Acosta'   ] },
+      { player: 'Lechero',  guesses: ['M Marquez', 'A Marquez', 'Bezzecchi', 'Martin',    'Fernandez'] },
+      { player: 'Cebolla',  guesses: ['M Marquez', 'Bezzecchi', 'A Marquez', 'Martin',    'Fernandez'] },
+      { player: 'Amador',   guesses: ['M Marquez', 'Bezzecchi', 'A Marquez', 'Acosta',    'Martin'   ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['M Marquez', 'A Marquez', 'Bezzecchi', 'Acosta',    'Martin'   ] },
+      { player: 'Angel',    guesses: ['Bezzecchi', 'M Marquez', 'A Marquez', 'Fernandez', 'Martin'   ] },
+      { player: 'David',    guesses: ['M Marquez', 'Bezzecchi', 'A Marquez', 'Martin',    'Fernandez'] },
+    ],
   },
   {
     type: EVENT_TYPES.RALLY,
@@ -21,10 +46,22 @@ export const upcomingEvents = [
     name: 'Rally Paraguay',
     location: 'Paraguay',
     date: '27-30 ago 2026',
+    result: ['Pajari', 'Paddon', 'Fourmaux', 'Evans', 'Solberg'],
+    picks: [
+      { player: 'Choro',    guesses: ['Ogier', 'Solberg', 'Pajari',  'Evans',   'Neuville' ] },
+      { player: 'Dani',     guesses: ['Evans', 'Ogier',   'Pajari',  'Neuville','Solberg'  ] },
+      { player: 'Juanra',   guesses: ['Pajari', 'Evans',  'Ogier',   'Katsuta', 'Solberg'  ] },
+      { player: 'Juano',    guesses: ['Ogier', 'Solberg', 'Pajari',  'Neuville','Fourmaux' ] },
+      { player: 'Sarri',    guesses: ['Ogier', 'Solberg', 'Evans',   'Katsuta', 'Neuville' ] },
+      { player: 'Lechero',  guesses: ['Ogier', 'Paddon',  'Pajari',  'Solberg', 'Katsuta'  ] },
+      { player: 'Cebolla',  guesses: ['Solberg', 'Ogier', 'Evans',   'Katsuta', 'Neuville' ] },
+      { player: 'Amador',   guesses: ['Ogier', 'Solberg', 'Pajari',  'Fourmaux','Neuville' ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Ogier', 'Solberg', 'Evans',   'Neuville','Katsuta'  ] },
+      { player: 'Angel',    guesses: ['Katsuta', 'Ogier', 'Evans',   'Pajari',  'Solberg'  ] },
+      { player: 'David',    guesses: ['Evans', 'Ogier',   'Katsuta', 'Solberg', 'Neuville' ] },
+    ],
   },
-];
-
-export const events = [
   {
     type: EVENT_TYPES.F1,
     round: 34,
