@@ -10,14 +10,50 @@ import { EVENT_TYPES } from './config.js';
 export const upcomingEvents = [
   {
     type: EVENT_TYPES.F1,
-    round: 42,
-    name: 'GP de Azerbaiyán',
-    location: 'Bakú',
-    date: '26 sep 2026',
+    round: 43,
+    name: 'GP de Malasia',
+    location: 'Sepang',
+    date: '4 oct 2026',
+  },
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 44,
+    name: 'MotoGP Japón',
+    location: 'Motegi',
+    date: '4 oct 2026',
+  },
+  {
+    type: EVENT_TYPES.RALLY,
+    round: 45,
+    name: 'Rally Italia Cerdeña',
+    location: 'Alghero',
+    date: '1-4 oct 2026',
   },
 ];
 
 export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 42,
+    name: 'GP de Azerbaiyán',
+    location: 'Bakú',
+    date: '26 sep 2026',
+    result: ['Russell', 'Verstappen', 'Hadjar', 'Leclerc', 'Antonelli'],
+    picks: [
+      { player: 'Choro',    guesses: ['Leclerc', 'Russell', 'Hamilton', 'Norris',    'Antonelli'] },
+      { player: 'Dani',     guesses: ['Russell', 'Verstappen', 'Leclerc', 'Norris',  'Piastri'  ] },
+      { player: 'Juanra',   guesses: ['Russell', 'Leclerc', 'Piastri',   'Norris',   'Antonelli'] },
+      { player: 'Juano',    guesses: ['Russell', 'Antonelli', 'Leclerc', 'Piastri',  'Verstappen'] },
+      { player: 'Sarri',    guesses: ['Russell', 'Antonelli', 'Leclerc', 'Piastri',  'Hamilton' ] },
+      { player: 'Lechero',  guesses: ['Russell', 'Antonelli', 'Piastri', 'Norris',   'Verstappen'] },
+      { player: 'Cebolla',  guesses: ['Russell', 'Leclerc', 'Verstappen', 'Piastri', 'Norris'   ] },
+      { player: 'Amador',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Pilili',   guesses: ['Leclerc', 'Norris', 'Russell',   'Piastri',  'Verstappen'] },
+      { player: 'Calcetin', guesses: ['Russell', 'Leclerc', 'Piastri',  'Norris',   'Hamilton' ] },
+      { player: 'Angel',    guesses: ['Antonelli', 'Piastri', 'Norris', 'Leclerc',  'Verstappen'] },
+      { player: 'David',    guesses: ['Russell', 'Piastri', 'Leclerc',  'Norris',   'Hamilton' ] },
+    ],
+  },
   {
     type: EVENT_TYPES.MOTO,
     round: 41,
