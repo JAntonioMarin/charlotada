@@ -10,21 +10,65 @@ import { EVENT_TYPES } from './config.js';
 export const upcomingEvents = [
   {
     type: EVENT_TYPES.F1,
-    round: 46,
-    name: 'GP de Singapur',
-    location: 'Marina Bay',
-    date: '11 oct 2026',
+    round: 48,
+    name: 'GP de Estados Unidos',
+    location: 'Austin',
+    date: '25 oct 2026',
   },
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 49,
+    name: 'MotoGP Australia',
+    location: 'Phillip Island',
+    date: '25 oct 2026',
+  },
+];
+
+export const events = [
   {
     type: EVENT_TYPES.MOTO,
     round: 47,
     name: 'MotoGP Indonesia',
     location: 'Mandalika',
     date: '11 oct 2026',
+    result: ['Bezzecchi', 'Fernandez', 'Martin', 'Ogura', 'Acosta'],
+    picks: [
+      { player: 'Choro',    guesses: ['Martin', 'Bezzecchi', 'M Marquez', 'Giannantonio', 'Acosta'   ] },
+      { player: 'Dani',     guesses: ['M Marquez', 'Martin', 'Acosta',    'A Marquez',    'Aldeguer' ] },
+      { player: 'Juanra',   guesses: ['Bezzecchi', 'Martin', 'M Marquez', 'Fernandez',    'Giannantonio'] },
+      { player: 'Juano',    guesses: ['Bezzecchi', 'M Marquez', 'Martin', 'Fernandez',    'Ogura'    ] },
+      { player: 'Sarri',    guesses: ['Martin', 'Bezzecchi', 'M Marquez', 'Ogura',        'Fernandez'] },
+      { player: 'Lechero',  guesses: ['Fernandez', 'Bezzecchi', 'Martin', 'M Marquez',    'Ogura'    ] },
+      { player: 'Cebolla',  guesses: ['M Marquez', 'Martin', 'Bezzecchi', 'Fernandez',    'Ogura'    ] },
+      { player: 'Amador',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['M Marquez', 'Fernandez', 'Bezzecchi', 'Martin',    'Ogura'    ] },
+      { player: 'Angel',    guesses: ['M Marquez', 'Martin', 'Fernandez', 'Bezzecchi',    'A Marquez'] },
+      { player: 'David',    guesses: ['M Marquez', 'Giannantonio', 'Martin', 'Acosta',    'Ogura'    ] },
+    ],
   },
-];
-
-export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 46,
+    name: 'GP de Singapur',
+    location: 'Marina Bay',
+    date: '11 oct 2026',
+    result: ['Verstappen', 'Leclerc', 'Antonelli', 'Norris', 'Piastri'],
+    picks: [
+      { player: 'Choro',    guesses: ['Verstappen', 'Leclerc', 'Antonelli', 'Hamilton', 'Norris' ] },
+      { player: 'Dani',     guesses: ['Verstappen', 'Leclerc', 'Antonelli', 'Hamilton', 'Norris' ] },
+      { player: 'Juanra',   guesses: ['Verstappen', 'Leclerc', 'Hamilton',  'Antonelli', 'Norris'] },
+      { player: 'Juano',    guesses: ['Verstappen', 'Leclerc', 'Hamilton',  'Antonelli', 'Norris'] },
+      { player: 'Sarri',    guesses: ['Verstappen', 'Leclerc', 'Hamilton',  'Antonelli', 'Norris'] },
+      { player: 'Lechero',  guesses: ['Verstappen', 'Antonelli', 'Hamilton', 'Leclerc',  'Norris'] },
+      { player: 'Cebolla',  guesses: ['Antonelli', 'Verstappen', 'Russell', 'Hamilton',  'Leclerc'] },
+      { player: 'Amador',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Verstappen', 'Leclerc', 'Antonelli', 'Hamilton', 'Norris' ] },
+      { player: 'Angel',    guesses: ['Verstappen', 'Antonelli', 'Hamilton', 'Leclerc', 'Norris' ] },
+      { player: 'David',    guesses: ['Verstappen', 'Leclerc', 'Norris',    'Hamilton', 'Piastri'] },
+    ],
+  },
   {
     type: EVENT_TYPES.RALLY,
     round: 45,
