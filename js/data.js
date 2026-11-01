@@ -15,16 +15,31 @@ export const upcomingEvents = [
     location: 'Ciudad de México',
     date: '1 nov 2026',
   },
+];
+
+export const events = [
   {
     type: EVENT_TYPES.MOTO,
     round: 51,
     name: 'MotoGP Malasia',
     location: 'Sepang',
     date: '1 nov 2026',
+    result: ['M Marquez', 'Acosta', 'A Marquez', 'Ogura', 'Bastianini'],
+    picks: [
+      { player: 'Choro',    guesses: ['Bezzecchi', 'Acosta', 'M Marquez', 'A Marquez',    'Giannantonio'] },
+      { player: 'Dani',     guesses: ['A Marquez', 'Acosta', 'Giannantonio', 'M Marquez', 'Bezzecchi'   ] },
+      { player: 'Juanra',   guesses: ['Acosta', 'M Marquez', 'Bezzecchi', 'A Marquez',    'Ogura'       ] },
+      { player: 'Juano',    guesses: ['M Marquez', 'A Marquez', 'Acosta', 'Ogura',        'Bezzecchi'   ] },
+      { player: 'Sarri',    guesses: ['M Marquez', 'A Marquez', 'Acosta', 'Bezzecchi',    'Ogura'       ] },
+      { player: 'Lechero',  guesses: ['A Marquez', 'Ogura', 'M Marquez', 'Acosta',        'Bezzecchi'   ] },
+      { player: 'Cebolla',  guesses: ['M Marquez', 'Bezzecchi', 'Acosta', 'Ogura',        'A Marquez'   ] },
+      { player: 'Amador',   guesses: ['Acosta', 'M Marquez', 'Bezzecchi', 'A Marquez',    'Ogura'       ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['M Marquez', 'A Marquez', 'Acosta', 'Bezzecchi',    'Ogura'       ] },
+      { player: 'Angel',    guesses: ['Acosta', 'A Marquez', 'Ogura', 'M Marquez',        'Bezzecchi'   ] },
+      { player: 'David',    guesses: ['M Marquez', 'Acosta', 'Bezzecchi', 'Giannantonio', 'Ogura'       ] },
+    ],
   },
-];
-
-export const events = [
   {
     type: EVENT_TYPES.MOTO,
     round: 49,
