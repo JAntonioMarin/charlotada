@@ -10,21 +10,65 @@ import { EVENT_TYPES } from './config.js';
 export const upcomingEvents = [
   {
     type: EVENT_TYPES.F1,
-    round: 52,
-    name: 'GP de São Paulo',
-    location: 'Interlagos',
-    date: '8 nov 2026',
+    round: 54,
+    name: 'GP de Las Vegas',
+    location: 'Las Vegas',
+    date: '21 nov 2026',
   },
+  {
+    type: EVENT_TYPES.MOTO,
+    round: 55,
+    name: 'MotoGP Portugal',
+    location: 'Portimão',
+    date: '22 nov 2026',
+  },
+];
+
+export const events = [
   {
     type: EVENT_TYPES.MOTO,
     round: 53,
     name: 'MotoGP Catar',
     location: 'Lusail',
     date: '8 nov 2026',
+    result: ['Bezzecchi', 'M Marquez', 'Fernandez', 'Ogura', 'Bastianini'],
+    picks: [
+      { player: 'Choro',    guesses: ['Bezzecchi', 'M Marquez', 'Giannantonio', 'Martin',    'Ogura'    ] },
+      { player: 'Dani',     guesses: ['M Marquez', 'Bezzecchi', 'Giannantonio', 'Martin',    'Acosta'   ] },
+      { player: 'Juanra',   guesses: ['Bezzecchi', 'M Marquez', 'Giannantonio', 'Martin',    'Fernandez'] },
+      { player: 'Juano',    guesses: ['Bezzecchi', 'M Marquez', 'Giannantonio', 'Fernandez', 'Ogura'    ] },
+      { player: 'Sarri',    guesses: ['Bezzecchi', 'M Marquez', 'Ogura',        'Giannantonio', 'Fernandez'] },
+      { player: 'Lechero',  guesses: ['Bezzecchi', 'M Marquez', 'Giannantonio', 'Martin',    'Fernandez'] },
+      { player: 'Cebolla',  guesses: ['M Marquez', 'Bezzecchi', 'Ogura',        'Fernandez', 'Acosta'   ] },
+      { player: 'Amador',   guesses: ['Bezzecchi', 'M Marquez', 'Giannantonio', 'Acosta',    'Martin'   ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Bezzecchi', 'M Marquez', 'Giannantonio', 'Fernandez', 'Ogura'    ] },
+      { player: 'Angel',    guesses: ['M Marquez', 'Martin',    'Bezzecchi',    'Giannantonio', 'Acosta'] },
+      { player: 'David',    guesses: ['M Marquez', 'Giannantonio', 'Martin',    'Acosta',    'Zarco'    ] },
+    ],
   },
-];
-
-export const events = [
+  {
+    type: EVENT_TYPES.F1,
+    round: 52,
+    name: 'GP de São Paulo',
+    location: 'Interlagos',
+    date: '8 nov 2026',
+    result: ['Norris', 'Verstappen', 'Hadjar', 'Russell', 'Antonelli'],
+    picks: [
+      { player: 'Choro',    guesses: ['Norris', 'Antonelli', 'Russell', 'Leclerc', 'Hamilton'] },
+      { player: 'Dani',     guesses: ['Norris', 'Antonelli', 'Russell', 'Leclerc', 'Verstappen'] },
+      { player: 'Juanra',   guesses: ['Antonelli', 'Norris', 'Leclerc', 'Russell', 'Hadjar'   ] },
+      { player: 'Juano',    guesses: ['Antonelli', 'Norris', 'Verstappen', 'Russell', 'Leclerc'] },
+      { player: 'Sarri',    guesses: ['Antonelli', 'Russell', 'Norris', 'Leclerc', 'Verstappen'] },
+      { player: 'Lechero',  guesses: ['Antonelli', 'Russell', 'Norris', 'Leclerc', 'Verstappen'] },
+      { player: 'Cebolla',  guesses: ['Antonelli', 'Norris', 'Russell', 'Piastri', 'Leclerc'   ] },
+      { player: 'Amador',   guesses: ['Norris', 'Antonelli', 'Lawson', 'Hulkenberg', 'Russell' ] },
+      { player: 'Pilili',   guesses: ['-', '-', '-', '-', '-'] },
+      { player: 'Calcetin', guesses: ['Antonelli', 'Norris', 'Leclerc', 'Russell', 'Hadjar'    ] },
+      { player: 'Angel',    guesses: ['Norris', 'Antonelli', 'Leclerc', 'Verstappen', 'Lawson' ] },
+      { player: 'David',    guesses: ['Norris', 'Antonelli', 'Russell', 'Leclerc', 'Hulkenberg'] },
+    ],
+  },
   {
     type: EVENT_TYPES.F1,
     round: 50,
